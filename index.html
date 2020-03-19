@@ -1,6 +1,7 @@
 <!-- <!DOCTYPE html>
 <html lang="en"> -->
 <html>
+
 <head>
     <!-- <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
@@ -8,7 +9,11 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./js/bootstrap.min.js" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 </head>
 
 <body cz-shortcut-listen="true">
@@ -18,15 +23,19 @@
         </div>
         <div class="username">
             <div class="form-group">
-                <label for="username">Email</label>
-                <input type="text" class="form-control" id="user" placeholder="User Name" />
-            </div>
-            <div class="form-group">
-                <label for="pass">Password</label>
-                <input type="password" class="form-control" id="pass" placeholder="Password" />
+                <form id="myform">
+                    <label for="field">Email </label>
+                    <input class="form-control" id="field" name="field" placeholder="Email">
+                </form>
             </div>
             </br>
-            <div class="login">
+            <div class=" form-group" style="height: 10 px;width: 400px;padding-left: 8px;">
+                <label for="field">Password</label>
+                <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
+            </div>
+            </br>
+            </br>
+            <div class="login" style="padding-left: 10px;">
                 <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
             </div>
         </div>
@@ -48,16 +57,16 @@
 <script type="module">
     import {
         host,
-        port,
-        checktoken
+        checktoken,
+        service,
     } from './config.js';
     $(function () {
         $("#submitBtn").click(function () {
-            var email = $("#user").val();
+            var email = $("#field").val();
             var password = $("#pass").val();
             $.ajax({
                 type: "POST", //GET, POST, PUT
-                url: "http://" + host() + ":" + port() + "/project/public/api/login", //the url to call
+                url: "http://" + service() + "/project/public/api/login", //the url to call
                 data: {
                     email: email,
                     password: password
@@ -66,7 +75,7 @@
                 .done(function (response) {
                     if (response["status"] == 200) {
                         localStorage.setItem("token", response["token"]);
-                        window.location.href = "http://" + host() + ":" + port() + "/front/products.html";
+                        window.location.href = "http://" + host() + "/products.html";
                     } else {
                         alert("Wrong email or password!!!");
                     }
@@ -75,8 +84,47 @@
                     //Error during request
                 });
         });
-        $("#register").append('<a href="http://' + host() + ':' + port() + '/front/register.html">register</a>');
-        $("#register").append('<a href="http://' + host() + ':' + port() + '/front/register.html">     forgot</a>');
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $("#myform").validate({
+            rules: {
+                field: {
+                    required: true,
+                    email: true
+                }
+            }
+        });
+
+        $('#pass').keypress(function (e) {
+            if (e.which == 13) {
+                var email = $("#field").val();
+                var password = $("#pass").val();
+
+                $.ajax({
+                    type: "POST", //GET, POST, PUT
+                    url: "http://" + service() + "/project/public/api/login", //the url to call
+                    data: {
+                        email: email,
+                        password: password
+                    }
+                })
+                    .done(function (response) {
+                        if (response["status"] == 200) {
+                            localStorage.setItem("token", response["token"]);
+                            window.location.href = "http://" + host() + "/products.html";
+                        } else {
+                            alert("Wrong email or password!!!");
+                        }
+                    })
+                    .fail(function (err) {
+                        //Error during request
+                    });
+            }
+        });
+        $("#register").append('<a href="http://' + host() + '/register.html">register</a>');
+        $("#register").append('<a href="http://' + host() + '/forgot.html">     forgot</a>');
     });
 </script>
 
