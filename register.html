@@ -1,9 +1,9 @@
-<!-- <!DOCTYPE html>
-<html lang="en"> -->
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <!-- <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./js/bootstrap.min.js" />
@@ -14,7 +14,7 @@
 <body cz-shortcut-listen="true">
     <div class="index-container">
         <div class="title">
-            <h1>Login</h1>
+            <h1>Register</h1>
         </div>
         <div class="username">
             <div class="form-group">
@@ -25,12 +25,18 @@
                 <label for="pass">Password</label>
                 <input type="password" class="form-control" id="pass" placeholder="Password" />
             </div>
+            <div class="form-group">
+                <label for="pass">Confirm Password</label>
+                <input type="password" class="form-control" id="conpass" placeholder="Password" />
+            </div>
             </br>
             <div class="login">
                 <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
             </div>
         </div>
-
+        <!-- <div class="login">
+            <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
+        </div> -->
         <div class="forgotpass" id="register">
         </div>
         <script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script>
@@ -43,13 +49,12 @@
         <script src="/js/bootstrap.bundle.min.js"
             integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
             crossorigin="anonymous"></script>
-
 </body>
 <script type="module">
     import {
-        host,
         port,
-        checktoken
+        checktoken,
+        host
     } from './config.js';
     $(function () {
         $("#submitBtn").click(function () {
@@ -62,11 +67,16 @@
                     email: email,
                     password: password
                 }
+                // , //Data sent to server
+                // beforeSend: function(xhr) {
+                //     //Include the bearer token in header
+                //     xhr.setRequestHeader("Authorization", "Bearer " + jwt);
+                // }
             })
                 .done(function (response) {
                     if (response["status"] == 200) {
                         localStorage.setItem("token", response["token"]);
-                        window.location.href = "http://" + host() + ":" + port() + "/front/products.html";
+                        window.location.href = "http://" + host() + ":" + port() + "/project/public/api/login";
                     } else {
                         alert("Wrong email or password!!!");
                     }
@@ -75,8 +85,7 @@
                     //Error during request
                 });
         });
-        $("#register").append('<a href="http://' + host() + ':' + port() + '/front/register.html">register</a>');
-        $("#register").append('<a href="http://' + host() + ':' + port() + '/front/register.html">     forgot</a>');
+        $("#register").append('<a href="http://' + host() + ':' + port() + '/front/index.html">login</a>');
     });
 </script>
 

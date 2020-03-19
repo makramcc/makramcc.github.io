@@ -1,0 +1,201 @@
+body {
+  background-color: #1e272e;
+  color: #c0c0c0;
+}
+
+.btn-primary {
+  color: #1e272e;
+  background-color: #ffa801;
+  border-color: #ffa801;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled):active {
+  color: #1e272e;
+  background-color: #ffba39;
+  border-color: #ffba39;
+  box-shadow: 0 0 0 0.2rem rgba(255, 168, 1, 0.5);
+}
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 175, 27, 0.5);
+}
+a {
+  color: #ffa801;
+}
+a:hover {
+  color: #ffba39;
+}
+.index-container {
+  display: grid;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 3rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas: 'title . .' '. username .' '. pass .' '. login forgotpass';
+}
+
+.title {
+  grid-area: title;
+  color: #ffa801;
+}
+
+.username {
+  grid-area: username;
+}
+
+.pass {
+  grid-area: pass;
+}
+
+.login {
+  grid-area: login;
+}
+
+.forgotpass {
+  grid-area: forgotpass;
+}
+.product-container {
+  padding: 3rem;
+}
+.product-title {
+  color: #ffa801;
+  width: 100%;
+}
+.product-lists {
+  display: flex;
+  padding: 3rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.product-list {
+  width: calc(50% - 2rem);
+  margin: 1rem;
+  box-sizing: border-box;
+  min-height: 10rem;
+}
+
+.confirm-container {
+  text-align: center;
+  display: grid;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 3rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    'confirm-title'
+    'product-detail'
+    'customer-detail'
+    'claim';
+}
+
+.confirm-title {
+  grid-area: confirm-title;
+  text-align: left;
+
+  color: #ffa801;
+}
+
+.product-detail {
+  grid-area: product-detail;
+}
+
+.customer-detail {
+  grid-area: customer-detail;
+}
+
+.claim {
+  grid-area: claim;
+}
+
+.document-container {
+  text-align: center;
+  display: grid;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 3rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    'document-title'
+    'claim-document'
+    'print';
+}
+
+.document-title {
+  grid-area: document-title;
+  text-align: left;
+
+  color: #ffa801;
+}
+
+.claim-document {
+  grid-area: claim-document;
+}
+
+.print {
+  grid-area: print;
+}
+
+.detail-container {
+  display: grid;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 3rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    'detail-title detail-title'
+    'firstname lastname'
+    'address phone'
+    'email date'
+    'location note'
+    'confirm-button confirm-button';
+}
+
+.detail-title {
+  grid-area: detail-title;
+  color: #ffa801;
+}
+
+.firstname {
+  grid-area: firstname;
+}
+
+.lastname {
+  grid-area: lastname;
+}
+
+.address {
+  grid-area: address;
+}
+
+.phone {
+  grid-area: phone;
+}
+
+.email {
+  grid-area: email;
+}
+
+.date {
+  grid-area: date;
+}
+
+.location {
+  grid-area: location;
+}
+
+.note {
+  grid-area: note;
+}
+
+.confirm-button {
+  grid-area: confirm-button;
+}
