@@ -45,9 +45,10 @@ a:hover {
   padding: 3rem;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 0.1fr;
-  grid-template-areas: 'title username .'
-   '. username .'
-    '. username .' 
+  grid-template-areas:
+    'title username .'
+    '. username .'
+    '. username .'
     '. login forgotpass';
 }
 
@@ -169,7 +170,7 @@ a:hover {
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
     'detail-title detail-title'
-    'username'
+    'username username'
     'address phone'
     'email date'
     'location note'
