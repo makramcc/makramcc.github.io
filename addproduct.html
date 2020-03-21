@@ -81,7 +81,7 @@
             })
             $.ajax({
                 type: "POST", //GET, POST, PUT
-                url: "http://" + service() + "/project/public/api/product", //the url to call
+                url: "https://" + service() + "/project/public/api/product", //the url to call
                 data: {
                     name,
                     productdetail,
@@ -96,7 +96,7 @@
             })
                 .done(function (response) {
                     if (response["status"] == 200) {
-                        window.location.href = "http://" + host() + "/index.html";
+                        window.location.href = "https://" + host() + "/index.html";
                     } else {
                         alert("Wrong email or password!!!");
                     }
@@ -117,7 +117,7 @@
                 }
             }
         });
-        $("#back").append('<a href="http://' + host() + '/products.html">back</a>');
+        $("#back").append('<a href="https://' + host() + '/products.html">back</a>');
     });
 </script>
 

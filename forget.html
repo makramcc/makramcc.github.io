@@ -62,7 +62,7 @@
             console.log(service())
             $.ajax({
                 type: "POST", //GET, POST, PUT
-                url: "https://" + service() + "/project/public/api/forget, //the url to call
+                url: "https://" + service() + "/project/public/api/forget", //the url to call
                 data: {
                     email: email,
                     password: password
@@ -71,7 +71,7 @@
                 .done(function (response) {
                     if (response["status"] == 200) {
                         localStorage.setItem("token", response["token"]);
-                        window.location.href = "http://" + host() + "/products.html";
+                        window.location.href = "https://" + host() + "/products.html";
                     } else {
                         alert("Wrong email or password!!!");
                     }
@@ -119,8 +119,8 @@
                     });
             }
         });
-        $("#register").append('<a href="http://' + host() + '/register.html">register</a>');
-        $("#register").append('<a href="http://' + host() + '/forgot.html">     forgot</a>');
+        $("#register").append('<a href="https://' + host() + '/register.html">register</a>');
+        $("#register").append('<a href="https://' + host() + '/forgot.html">     forgot</a>');
     });
 </script>
 
