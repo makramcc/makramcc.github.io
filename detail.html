@@ -73,13 +73,13 @@
         })
             .done(function (response) {
                 if (response["status"] == 200) {
-                    $("#username").html(response.data.name)
-                    $("#address").html(response.data.address)
-                    $("#phone").html(response.data.number)
-                    $("#email").html(response.data.email)
-                    $("#date").html(response.data.product[0].date)
-                    $("#location").html(response.data.product[0].location)
-                    $("#note").html(response.data.product[0].note)
+                    $("#username").html(response.data[0].name)
+                    $("#address").html(response.data[0].address)
+                    $("#phone").html(response.data[0].number)
+                    $("#email").html(response.data[0].email)
+                    $("#date").html(response.data[0].product[0].date)
+                    $("#location").html(response.data[0].product[0].location)
+                    $("#note").html(response.data[0].product[0].note)
                     localStorage.removeItem(product)
                 }
             })
