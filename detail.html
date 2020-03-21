@@ -74,6 +74,7 @@
                     $("#date").html(response.data.product.date)
                     $("#location").html(response.data.product.location)
                     $("#note").html(response.data.product.note)
+                    localStorage.removeItem(product)
                 }
             })
             .fail(function (err) {
