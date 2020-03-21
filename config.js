@@ -1,6 +1,12 @@
 export function checktoken() {
   let token = localStorage.getItem('token')
-  if (token === null) window.location.href = 'https://' + host() + '/index.html'
+  console.log(token)
+
+  if (token === null) {
+    window.location.href = 'https://' + host() + '/index.html'
+  } else {
+    window.location.href = 'https://' + host() + '/products.html'
+  }
 }
 
 export function host() {
