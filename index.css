@@ -169,7 +169,7 @@ a:hover {
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
     'detail-title detail-title'
-    'firstname lastname'
+    'username'
     'address phone'
     'email date'
     'location note'
@@ -181,12 +181,8 @@ a:hover {
   color: #ffa801;
 }
 
-.firstname {
-  grid-area: firstname;
-}
-
-.lastname {
-  grid-area: lastname;
+.username {
+  grid-area: username;
 }
 
 .address {

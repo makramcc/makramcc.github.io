@@ -77,7 +77,7 @@
             .done(function (response) {
                 if (response["status"] == 200) {
                     response.data.map(res => {
-                        $('#addproduct').before(`<div class="card product-list">
+                        $('#addproduct').before(`<div class="card product-list" id="product-${res.id}">
                             <div class="card-header">
                                 ${res.name}
                              </div>
@@ -88,6 +88,10 @@
                                 </div>
                             </div>
                         </div>`)
+                        $(`#product-${res.id}`).click(function () {
+                            localStorage.setItem('product', res.id)
+                            window.location.href = "https://" + host() + "/detail.html";
+                        })
                     })
                 }
             })

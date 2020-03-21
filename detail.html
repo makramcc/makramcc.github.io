@@ -16,41 +16,74 @@
         <div class="detail-title">
             <h1>Details</h1>
         </div>
-        <div class="firstname">
-            <h1>firstname</h1>
+        <div class="username">
+            <h1 id="username">username</h1>
         </div>
-        <div class="lastname">
-            <h1>lastname</h1>
-        </div>
+
         <div class="address">
-            <h1>address</h1>
+            <h1 id="address">address</h1>
         </div>
         <div class="phone">
-            <h1>phone</h1>
+            <h1 id="phone">phone</h1>
         </div>
         <div class="email">
-            <h1>email</h1>
+            <h1 id="email">email</h1>
         </div>
         <div class="date">
-            <h1>date</h1>
+            <h1 id="date">date</h1>
         </div>
         <div class="location">
-            <h1>location</h1>
+            <h1 id="location">location</h1>
         </div>
         <div class="note">
-            <h1>note</h1>
+            <h1 id="note">note</h1>
         </div>
-        <div class="confirm-button"><button class="btn btn-primary btn-block">Confirm</button></div>
-    </div>
-    <script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-    <script src="/js/bootstrap.bundle.min.js"
-        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
-        crossorigin="anonymous"></script>
-
+        <div class="confirm-button"><button class="btn btn-primary btn-block" id="print">Print</button></div>
+        <script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script>
+        <script>
+            window.jQuery ||
+                document.write(
+                    '<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>'
+                );
+        </script>
+        <script src="/js/bootstrap.bundle.min.js"
+            integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
+            crossorigin="anonymous"></script>
 </body>
+<script type="module">
+    import {
+        checktoken,
+        host,
+        service,
+    } from './config.js';
+    $(function () {
+        let productId = localStorage.getItem(product)
+        $.ajax({
+            type: "GET", //GET, POST, PUT
+            url: "https://" + service() + "/project/public/api/detail/" + productId, //the url to call
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+        })
+            .done(function (response) {
+                if (response["status"] == 200) {
+                    $("#username").html(response.data.name)
+                    $("#address").html(response.data.address)
+                    $("#phone").html(response.data.number)
+                    $("#email").html(response.data.email)
+                    $("#date").html(response.data.product.date)
+                    $("#location").html(response.data.product.location)
+                    $("#note").html(response.data.product.note)
+                }
+            })
+            .fail(function (err) {
+                //Error during request
+            });
+    });
+    $("#print").click(function () {
+        alert("Print")
+        window.location.href = "https://" + host() + "/products.html";
+    })
+</script>
 
 </html>
