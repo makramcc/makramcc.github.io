@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!--     <link rel="stylesheet" href="./js/bootstrap.min.js" /> -->
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+</head>
+
+<body cz-shortcut-listen="true">
+    <div class="index-container">
+        <div class="title">
+            <h1>Login</h1>
+        </div>
+        <div class="username">
+            <div class="form-group">
+                <form id="myform">
+                    <label for="field">Email </label>
+                    <input class="form-control" id="field" name="field" placeholder="Email">
+                </form>
+            </div>
+            <div class="login" style="padding-left: 10px;">
+                <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
+            </div>
+        </div>
+
+        <div class="forgotpass" id="register">
+        </div>
+        <script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script>
+        <script>
+            window.jQuery ||
+                document.write(
+                    '<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>'
+                );
+        </script>
+        <script src="/js/bootstrap.bundle.min.js"
+            integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
+            crossorigin="anonymous"></script>
+
+</body>
+<script type="module">
+    import {
+        host,
+        checktoken,
+        service,
+    } from './config.js';
+    $(function () {
+        $("#submitBtn").click(function () {
+            var email = $("#field").val();
+            var password = $("#pass").val();
+            console.log(service())
+            $.ajax({
+                type: "POST", //GET, POST, PUT
+                url: "https://" + service() + "/project/public/api/forget, //the url to call
+                data: {
+                    email: email,
+                    password: password
+                }
+            })
+                .done(function (response) {
+                    if (response["status"] == 200) {
+                        localStorage.setItem("token", response["token"]);
+                        window.location.href = "http://" + host() + "/products.html";
+                    } else {
+                        alert("Wrong email or password!!!");
+                    }
+                })
+                .fail(function (err) {
+                    //Error during request
+                });
+        });
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $("#myform").validate({
+            rules: {
+                field: {
+                    required: true,
+                    email: true
+                }
+            }
+        });
+
+        $('#pass').keypress(function (e) {
+            if (e.which == 13) {
+                var email = $("#field").val();
+                var password = $("#pass").val();
+
+                $.ajax({
+                    type: "POST", //GET, POST, PUT
+                    url: "https://" + service() + "/project/public/api/login", //the url to call
+                    data: {
+                        email: email,
+                        password: password
+                    }
+                })
+                    .done(function (response) {
+                        if (response["status"] == 200) {
+                            localStorage.setItem("token", response["token"]);
+                            window.location.href = "https://" + host() + "/products.html";
+                        } else {
+                            alert("Wrong email or password!!!");
+                        }
+                    })
+                    .fail(function (err) {
+                        //Error during request
+                    });
+            }
+        });
+        $("#register").append('<a href="http://' + host() + '/register.html">register</a>');
+        $("#register").append('<a href="http://' + host() + '/forgot.html">     forgot</a>');
+    });
+</script>
+
+</html>

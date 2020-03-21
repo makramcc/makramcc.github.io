@@ -8,6 +8,10 @@ body {
 .text-primary {
   color: #ffa801 !important;
 }
+#addproduct {
+  user-select: none;
+  cursor: pointer;
+}
 #addproduct:hover h1 {
   color: #1dd1a1 !important;
 }
@@ -40,8 +44,11 @@ a:hover {
   height: 100%;
   padding: 3rem;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-areas: 'title . .' '. username .' '. pass .' '. login forgotpass';
+  grid-template-rows: 1fr 1fr 1fr 0.1fr;
+  grid-template-areas: 'title username .'
+   '. username .'
+    '. username .' 
+    '. login forgotpass';
 }
 
 .title {
@@ -53,15 +60,12 @@ a:hover {
   grid-area: username;
 }
 
-.pass {
-  grid-area: pass;
-}
-
 .login {
   grid-area: login;
 }
 
 .forgotpass {
+  padding: 1rem;
   grid-area: forgotpass;
 }
 #navbar {
