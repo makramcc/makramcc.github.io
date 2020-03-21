@@ -63,26 +63,37 @@
         $("#submitBtn").click(function () {
             var email = $("#email").val();
             var password = $("#pass").val();
-            $.ajax({
-                type: "POST", //GET, POST, PUT
-                url: "https://" + service() + "/project/public/api/login", //the url to call
-                data: {
-                    email: email,
-                    password: password
-                }
-            })
-                .done(function (response) {
-                    if (response["status"] == 200) {
-                        localStorage.setItem("token", response["token"]);
-                        window.location.href = "https://" + host() + "/products.html";
-                    } else {
-                        alert("Wrong email or password!!!");
-                    }
-                })
-                .fail(function (err) {
-                    //Error during request
-                });
-        });
+//             $.ajax({
+//                 type: "POST", //GET, POST, PUT
+//                 url: "https://" + service() + "/project/public/api/login", //the url to call
+//                 data: {
+//                     email: email,
+//                     password: password
+//                 }
+//             })
+//                 .done(function (response) {
+//                     if (response["status"] == 200) {
+//                         localStorage.setItem("token", response["token"]);
+//                         window.location.href = "https://" + host() + "/products.html";
+//                     } else {
+//                         alert("Wrong email or password!!!");
+//                     }
+//                 })
+//                 .fail(function (err) {
+//                     //Error during request
+//                 });
+                $.ajax({
+                      type: "POST",
+                      beforeSend: function(request) {
+                      },
+                      url: "https://" + service() + "/project/public/api/login",
+                      data: {email: email,
+                     password: password},
+                      processData: false,
+                      success: function(msg) {
+                        $("#results").append("The result =" + StringifyPretty(msg));
+                      }
+                 });
         $("#register").append('<a href="https://' + host() + '/register.html">register</a>');
     });
 </script>
