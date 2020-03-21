@@ -30,13 +30,11 @@
                     <input class="form-control" id="field" name="field" placeholder="Email">
                 </form>
             </div>
-            </br>
             <div class=" form-group" style="height: 10 px;width: 400px;padding-left: 8px;">
                 <label for="field">Password</label>
                 <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
             </div>
-            </br>
-            </br>
+
             <div class="login" style="padding-left: 10px;">
                 <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
             </div>
@@ -66,9 +64,10 @@
         $("#submitBtn").click(function () {
             var email = $("#field").val();
             var password = $("#pass").val();
+            console.log(service())
             $.ajax({
                 type: "POST", //GET, POST, PUT
-                url: "www." + service() + "/project/public/api/login", //the url to call
+                url: "https://" + service() + "/project/public/api/login", //the url to call
                 data: {
                     email: email,
                     password: password
@@ -77,7 +76,7 @@
                 .done(function (response) {
                     if (response["status"] == 200) {
                         localStorage.setItem("token", response["token"]);
-                        window.location.href = "https://" + host() + "/products.html";
+                        window.location.href = "http://" + host() + "/products.html";
                     } else {
                         alert("Wrong email or password!!!");
                     }
@@ -125,8 +124,8 @@
                     });
             }
         });
-        $("#register").append('<a href="https://' + host() + '/register.html">register</a>');
-        $("#register").append('<a href="https://' + host() + '/forgot.html">     forgot</a>');
+        $("#register").append('<a href="http://' + host() + '/register.html">register</a>');
+        $("#register").append('<a href="http://' + host() + '/forgot.html">     forgot</a>');
     });
 </script>
 

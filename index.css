@@ -2,7 +2,15 @@ body {
   background-color: #1e272e;
   color: #c0c0c0;
 }
-
+.card {
+  background-color: #3a4853;
+}
+.text-primary {
+  color: #ffa801 !important;
+}
+#addproduct:hover h1 {
+  color: #1dd1a1 !important;
+}
 .btn-primary {
   color: #1e272e;
   background-color: #ffa801;
@@ -56,6 +64,11 @@ a:hover {
 .forgotpass {
   grid-area: forgotpass;
 }
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 .product-container {
   padding: 3rem;
 }
@@ -71,7 +84,7 @@ a:hover {
   flex-wrap: wrap;
 }
 .product-list {
-  width: calc(50% - 2rem);
+  width: calc(25% - 2rem);
   margin: 1rem;
   box-sizing: border-box;
   min-height: 10rem;

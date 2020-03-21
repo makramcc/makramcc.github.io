@@ -1,14 +1,12 @@
-
 export function checktoken() {
-  let token = localStorage.getItem("token");
-  if (token === null) window.location.href = "http://" + host() + "/index.html";
+  let token = localStorage.getItem('token')
+  if (token === null) window.location.href = 'http://' + host() + '/index.html'
 }
 
 export function host() {
-  return 'makramcc.github.io';
+  return 'localhost:5500'
 }
 
 export function service() {
-  return 'jns2010.com';
+  return 'fdef09df.ngrok.io'
 }
-

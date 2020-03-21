@@ -10,70 +10,39 @@
     <link rel="stylesheet" href="index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 </head>
 
 <body cz-shortcut-listen="true">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <div></div>
+            <button class="btn btn-primary mx-2" id="logout">Logout</button>
+    </nav>
     <div class="product-container">
         <div class="product-title">
             <h1>Product List</h1>
         </div>
         <div class="product-lists">
-            <div class="card product-list">
-                <div class="body">
-                    <div class="card-title">
-                        product 1
-                    </div>
-                </div>
-            </div>
-            <div class="card product-list">
-                <div class="body">
-                    <div class="card-title">
-                        product 2
-                    </div>
-                </div>
-            </div>
-            <div class="card product-list">
-                <div class="body">
-                    <div class="card-title">
-                        product 3
-                    </div>
-                </div>
-            </div>
-            <div class="card product-list">
-                <div class="body">
-                    <div class="card-title">
-                        product 4
-                    </div>
-                </div>
-            </div>
-            <div class="card product-list">
-                <div class="body">
-                    <div class="card-title">
-                        product 5
-                    </div>
-                </div>
-            </div>
-            <div class="card product-list">
-                <div class="body">
-                    <div class="card-title">
-                        product 6
-                    </div>
-                </div>
-            </div>
-            <div class="card product-list">
-                <div class="body">
-                    <div class="card-title">
-                        product 7
-                    </div>
-                </div>
+            <div class="card product-list d-flex justify-content-center align-items-center" id="addproduct">
+                <h1 class="text-muted"id="addproduct-text">Add</h1>
             </div>
         </div>
     </div>
     <script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+
+    <script>
+        window.jQuery ||
+            document.write(
+                '<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>'
+            );
+    </script>
     <script src="/js/bootstrap.bundle.min.js"
         integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
         crossorigin="anonymous"></script>
@@ -87,6 +56,40 @@
     } from './config.js';
     $(function () {
         checktoken();
+        $('#logout').click(function () {
+            localStorage.clear()
+            window.location.href = "http://" + host() + "/index.html";
+        })
+        $.ajax({
+            type: "GET", //GET, POST, PUT
+            url: "https://" + service() + "/project/public/api/products", //the url to call
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+        })
+            .done(function (response) {
+                if (response["status"] == 200) {
+                    console.log(response.data)
+                    response.data.map(res => {
+                        $('#addproduct').before(`<div class="card product-list">
+                            <div class="card-header">
+                                ${res.name}
+                             </div>
+                            <div class="body">
+                               
+                                <div class="card-title p-2">
+                                    ${res.detail}
+                                </div>
+                            </div>
+                        </div>`)
+                    })
+                } else {
+                    alert("Wrong email or password!!!");
+                }
+            })
+            .fail(function (err) {
+                //Error during request
+            });
     });
 </script>
 

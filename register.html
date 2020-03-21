@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <title>Document</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
@@ -26,27 +26,24 @@
         </div>
         <div class="username">
             <div class=" form-group" style="height: 10 px;width: 400px;padding-left: 8px;">
-                <label for="field">Full Name</label>
+                <label for="name">Full Name</label>
                 <input class="form-control" id="name" name="name" placeholder="Full Name">
             </div>
             <div class="form-group">
                 <form id="myform">
-                    <label for="field">Email </label>
-                    <input class="form-control" id="field" name="field" placeholder="Email"
+                    <label for="email">Email </label>
+                    <input class="form-control" id="field" name="email" placeholder="Email"
                         style="height:40px ;width:395px;">
                 </form>
             </div>
-            </br>
             <div class=" form-group" style="height: 10 px;width: 400px;padding-left: 8px;">
-                <label for="field">Password</label>
+                <label for="pass">Password</label>
                 <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
             </div>
             <div class=" form-group" style="height: 10 px;width: 400px;padding-left: 8px;">
-                <label for="field">Repeat Password</label>
+                <label for="repass">Repeat Password</label>
                 <input type="password" class="form-control" id="repass" name="repass" placeholder="Password">
             </div>
-            </br>
-            </br>
             <div class="login" style="padding-left: 10px;">
                 <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
             </div>
@@ -79,7 +76,12 @@
             var email = $("#field").val();
             var password = $("#pass").val();
             var repassword = $("#repass").val();
-
+            console.log({
+                name,
+                email,
+                password,
+                repassword
+            })
             if (password.localeCompare(repassword) != 0) {
                 alert("Both of password not same!!!");
                 return;
