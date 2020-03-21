@@ -31,18 +31,21 @@
             </div>
             <div class="form-group">
                 <label for="email">Email </label>
-                <input type="text" class="form-control form-control-sm" id="field" name="email" placeholder="Email"
-                    style="height:40px ;width:395px;">
+                <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="Email">
+                <small id="emailvalidate" class="text-danger">
+                </small>
             </div>
             <div class=" form-group">
-                <label for="pass">Password</label>
-                <input type="password" class="form-control form-control-sm" id="pass" name="pass"
+                <label for="password">Password</label>
+                <input type="password" class="form-control form-control-sm" id="password" name="password"
                     placeholder="Password">
             </div>
             <div class=" form-group">
                 <label for="repass">Repeat Password</label>
                 <input type="password" class="form-control form-control-sm" id="repass" name="repass"
                     placeholder="Password">
+                <small id="passvalidate" class="text-danger">
+                </small>
             </div>
             <div class=" form-group">
                 <label for="address">Address</label>
@@ -50,11 +53,11 @@
                     placeholder="Address">
             </div>
             <div class=" form-group">
-                <label for="num">Number</label>
-                <input type="password" class="form-control form-control-sm" id="num" name="num" placeholder="Number">
+                <label for="tel">Tel.</label>
+                <input type="password" class="form-control form-control-sm" id="tel" name="tel" placeholder="Tel.">
             </div>
         </div>
-        <div class="login" style="padding-left: 10px;">
+        <div class="login">
             <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
         </div>
         <div class="forgotpass" id="register">
@@ -77,18 +80,29 @@
         service,
     } from './config.js';
     $(function () {
+        $("#email").keyup(function () {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())) {
+                $("#emailvalidate").empty()
+            } else {
+                $("#emailvalidate").html('wrong email format')
+            }
+
+        })
+        $("#repass").keyup(function () {
+            console.log($("#repass").val())
+            if ($("#password").val().localeCompare($("#repass").val()) !== 0) {
+                $("#passvalidate").html('password is not the same')
+            } else {
+                $("#passvalidate").empty()
+            }
+        })
         $("#submitBtn").click(function () {
             var name = $('#name').val();
-            var email = $("#field").val();
-            var password = $("#pass").val();
-            var repassword = $("#repass").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
             var address = $("#address").val();
-            var number = $("#number").val();
+            var number = $("#tel").val();
 
-            if (password.localeCompare(repassword) != 0) {
-                alert("Both of password not same!!!");
-                return;
-            }
             $.ajax({
                 type: "POST", //GET, POST, PUT
                 url: "https://" + service() + "/project/public/api/register", //the url to call
@@ -114,18 +128,7 @@
                     //Error during request
                 });
         });
-        jQuery.validator.setDefaults({
-            debug: true,
-            success: "valid"
-        });
-        $("#myform").validate({
-            rules: {
-                field: {
-                    required: true,
-                    email: true
-                }
-            }
-        });
+
         $("#register").append('<a href="https://' + host() + '/index.html">login</a>');
     });
 </script>

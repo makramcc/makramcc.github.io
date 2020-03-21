@@ -25,11 +25,12 @@
         </div>
         <div class="username">
             <div class="form-group">
-                <label for="field">Email </label>
-                <input class="form-control" id="field" name="field" placeholder="Email">
+                <label for="email">Email </label>
+                <input type="type" class="form-control" id="email" name="email" placeholder="Email">
             </div>
-            <div class=" form-group">
-                <label for="field">Password</label>
+
+            <div class="form-group">
+                <label for="pass">Password</label>
                 <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
             </div>
 
@@ -60,7 +61,7 @@
     } from './config.js';
     $(function () {
         $("#submitBtn").click(function () {
-            var email = $("#field").val();
+            var email = $("#email").val();
             var password = $("#pass").val();
             $.ajax({
                 type: "POST", //GET, POST, PUT
@@ -82,19 +83,6 @@
                     //Error during request
                 });
         });
-        jQuery.validator.setDefaults({
-            debug: true,
-            success: "valid"
-        });
-        $("#myform").validate({
-            rules: {
-                field: {
-                    required: true,
-                    email: true
-                }
-            }
-        });
-
         $('#pass').keypress(function (e) {
             if (e.which == 13) {
                 var email = $("#field").val();
