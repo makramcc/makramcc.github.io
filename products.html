@@ -71,8 +71,10 @@
             type: "GET", //GET, POST, PUT
             url: "https://" + service() + "/project/public/api/products", //the url to call
             headers: {
-                "Authorization": `Bearer ${localStorage.getItem('token')}`
+                "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type':'application/json'
             },
+            dataType: 'json'
         })
             .done(function (response) {
                 if (response["status"] == 200) {
