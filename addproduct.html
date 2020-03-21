@@ -90,10 +90,8 @@
                     date, note
                 },
                 headers: {
-                    "Authorization": `Bearer ${localStorage.getItem('token')}`,
-                    'Content-Type':'application/json'
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
                 },
-                dataType: 'json'
             })
                 .done(function (response) {
                     if (response["status"] == 200) {
