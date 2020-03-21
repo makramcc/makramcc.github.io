@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Detail</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./js/bootstrap.min.js" />
     <link rel="stylesheet" href="index.css" />
@@ -77,9 +77,9 @@
                     $("#address").html(response.data.address)
                     $("#phone").html(response.data.number)
                     $("#email").html(response.data.email)
-                    $("#date").html(response.data.product.date)
-                    $("#location").html(response.data.product.location)
-                    $("#note").html(response.data.product.note)
+                    $("#date").html(response.data.product[0].date)
+                    $("#location").html(response.data.product[0].location)
+                    $("#note").html(response.data.product[0].note)
                     localStorage.removeItem(product)
                 }
             })
