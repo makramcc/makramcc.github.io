@@ -9,6 +9,6 @@ export function host() {
 }
 
 export function service() {
-  return 'localhost:8888';
+  return '192.168.2.35:8000';
 }
 
