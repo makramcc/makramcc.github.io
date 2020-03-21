@@ -91,7 +91,7 @@
                 },
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem('token')}`
-                },
+                }
             })
                 .done(function (response) {
                     if (response["status"] == 200) {
