@@ -31,9 +31,9 @@
                     placeholder="Product Name">
             </div>
             <div class="form-group">
-                <label for="productdetail">Detail</label>
+                <label for="productdetail">Product Detail</label>
                 <input type="text" class="form-control form-control-sm" id="productdetail" name="productdetail"
-                    placeholder="Product detail">
+                    placeholder="Product Detail">
             </div>
             <div class=" form-group">
                 <label for="location">Location</label>
@@ -75,7 +75,7 @@
     $(function () {
         $("#submitBtn").click(function () {
             var name = $('#name').val();
-            var productdetail = $("#productdetail").val();
+            var detail = $("#productdetail").val();
             var location = $("#location").val();
             var date = $("#date").val();
             var note = $("#note").val();
@@ -85,7 +85,7 @@
                 url: "https://" + service() + "/project/public/api/product", //the url to call
                 data: {
                     name,
-                    productdetail,
+                    detail,
                     location,
                     date, note
                 }
