@@ -25,13 +25,13 @@
             <h1>Add Product</h1>
         </div>
         <div class="username">
-            <div class=" form-group" >
+            <div class=" form-group">
                 <label for="name">Product Name</label>
                 <input type="text" class="form-control form-control-sm" id="name" name="name"
                     placeholder="Product Name">
             </div>
             <div class="form-group">
-                <label for="productdetail">Product detail</label>
+                <label for="productdetail">Detail</label>
                 <input type="text" class="form-control form-control-sm" id="productdetail" name="productdetail"
                     placeholder="Product detail">
             </div>
@@ -44,6 +44,10 @@
                 <label for="date">Date</label>
                 <input type="date" class="form-control form-control-sm" id="date" name="date" placeholder="Date">
             </div>
+        </div>
+        <div class=" form-group">
+            <label for="note">Note</label>
+            <input type="text" class="form-control form-control-sm" id="note" name="note" placeholder="Location">
         </div>
         <div class="login">
             <button class="btn btn-primary btn-block" id="submitBtn">Submit</button>
@@ -73,12 +77,8 @@
             var productdetail = $("#productdetail").val();
             var location = $("#location").val();
             var date = $("#date").val();
-            console.log({
-                name,
-                productdetail,
-                location,
-                date
-            })
+            var note = $("#note").val();
+
             $.ajax({
                 type: "POST", //GET, POST, PUT
                 url: "https://" + service() + "/project/public/api/product", //the url to call
@@ -86,7 +86,7 @@
                     name,
                     productdetail,
                     location,
-                    date
+                    date, note
                 }
                 // , //Data sent to server
                 // beforeSend: function(xhr) {
@@ -98,7 +98,7 @@
                     if (response["status"] == 200) {
                         window.location.href = "https://" + host() + "/index.html";
                     } else {
-                        alert("Wrong email or password!!!");
+                        alert("Invalid Product");
                     }
                 })
                 .fail(function (err) {

@@ -76,7 +76,6 @@
         })
             .done(function (response) {
                 if (response["status"] == 200) {
-                    console.log(response.data)
                     response.data.map(res => {
                         $('#addproduct').before(`<div class="card product-list">
                             <div class="card-header">

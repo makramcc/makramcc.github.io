@@ -89,7 +89,6 @@
 
         })
         $("#repass").keyup(function () {
-            console.log($("#repass").val())
             if ($("#password").val().localeCompare($("#repass").val()) !== 0) {
                 $("#passvalidate").html('password is not the same')
             } else {
@@ -121,7 +120,7 @@
                     if (response["status"] == 200) {
                         window.location.href = "https://" + host() + "/index.html";
                     } else {
-                        alert("Wrong email or password!!!");
+                        alert("Invalid register entry");
                     }
                 })
                 .fail(function (err) {
