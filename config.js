@@ -4,9 +4,9 @@ export function checktoken() {
 }
 
 export function host() {
-  return 'localhost:5500'
+  return 'makramcc.github.io'
 }
 
 export function service() {
-  return 'fdef09df.ngrok.io'
+  return 'jns2010.com'
 }
