@@ -5,10 +5,10 @@ export function checktoken() {
 }
 
 export function host() {
-  return 'localhost:8888/makramcc.github.io';
+  return 'makramcc.github.io';
 }
 
 export function service() {
-  return '192.168.2.35:8000';
+  return 'jns2010.com';
 }
 
