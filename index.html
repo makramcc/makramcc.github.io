@@ -88,12 +88,13 @@
                       },
                       url: "https://" + service() + "/project/public/api/login",
                       data: {email: email,
-                     password: password},
+                            password: password},
                       processData: false,
                       success: function(msg) {
                         $("#results").append("The result =" + StringifyPretty(msg));
                       }
                  });
+        });
         $("#register").append('<a href="https://' + host() + '/register.html">register</a>');
     });
 </script>
