@@ -88,12 +88,10 @@
                     detail,
                     location,
                     date, note
-                }
-                // , //Data sent to server
-                // beforeSend: function(xhr) {
-                //     //Include the bearer token in header
-                //     xhr.setRequestHeader("Authorization", "Bearer " + jwt);
-                // }
+                },
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                },
             })
                 .done(function (response) {
                     if (response["status"] == 200) {
