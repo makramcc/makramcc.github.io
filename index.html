@@ -68,7 +68,7 @@
             var password = $("#pass").val();
             $.ajax({
                 type: "POST", //GET, POST, PUT
-                url: service() + "/project/public/api/login", //the url to call
+                url: "" + service() + "/project/public/api/login", //the url to call
                 data: {
                     email: email,
                     password: password
