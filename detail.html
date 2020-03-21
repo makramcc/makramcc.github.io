@@ -63,7 +63,7 @@
         service,
     } from './config.js';
     $(function () {
-        let productId = localStorage.getItem(product)
+        let productId = localStorage.getItem("product")
         $.ajax({
             type: "GET", //GET, POST, PUT
             url: "https://" + service() + "/project/public/api/detail/" + productId, //the url to call
