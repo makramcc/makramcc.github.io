@@ -72,7 +72,8 @@
                 data: {
                     email: email,
                     password: password
-                }
+                },
+                dataType: 'json'
             })
                 .done(function (response) {
                     if (response["status"] == 200) {
