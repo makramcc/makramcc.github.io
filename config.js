@@ -16,5 +16,5 @@ export function host() {
 }
 
 export function service() {
-  return 'jns2010.com'
+  return 'www.jns2010.com'
 }
